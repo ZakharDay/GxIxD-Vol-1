@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+SC:ital,wght@0,100..900;1,100..900&display=swap');
+
+@font-face {
+  font-family: 'BebasNeueRegular';
+
+  src: local('BebasNeueRegular'),
+    url('BebasNeue-Regular.ttf') format('truetype');
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'BebasNeueRegular', sans-serif;
+}
+
+h1 {
+  font-family: 'BebasNeueRegular', sans-serif;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-family: 'Alumni Sans SC', sans-serif;
+}
+
+p {
+  font-family: 'Roboto Slab', serif;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background: #bbb;
+}
+
+.leftWrapper {
+  display: flex;
+  gap: 30px;
+}
+
+.rightWrapper {
+  display: flex;
+  gap: 30px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 300px;
+  padding: 20px;
+  background-color: aqua;
+}
+
+.column div {
+  background-color: black;
+  color: white;
+  width: 50%;
+}
+
+.centeredRectContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.centeredRect {
+  width: 10vw;
+  height: 70vh;
+  background-color: greenyellow;
+}
+
+.firstGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 70vw;
+  gap: 20px 10px;
+  padding: 20px;
+}
+
+.firstGrid .gridItem {
+  padding: 6px 10px;
+  transition: transform 0.3s;
+}
+
+.firstGrid .gridItem:nth-child(1) {
+  background-color: antiquewhite;
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+.firstGrid .gridItem:nth-child(2) {
+  background-color: cadetblue;
+  transform: rotate(-6deg);
+}
+
+/* .firstGrid .gridItem:nth-child(2):hover {
+  transform: rotate(0deg);
+} */
+
+.firstGrid .gridItem:nth-child(3) {
+  background-color: green;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  transform: rotate(6deg);
+}
+
+/* .firstGrid .gridItem:nth-child(3):hover {
+  transform: rotate(0deg);
+} */
+
+.firstGrid .gridItem:nth-child(4) {
+  background-color: orange;
+  grid-column-start: 3;
+  grid-column-end: 5;
+}
+
+.firstGrid .gridItem:nth-child(6) {
+  background-color: lightblue;
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+
+.firstGrid .gridItem:nth-child(7) {
+  background-color: plum;
+  animation-name: attract;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.firstGrid .gridItem:hover {
+  transform: rotate(0deg);
+  animation-name: none;
+}
+
+@keyframes attract {
+  0% {
+    transform: rotate(-6deg);
+  }
+
+  50% {
+    transform: rotate(6deg);
+  }
+
+  100% {
+    transform: rotate(-6deg);
+  }
+}
