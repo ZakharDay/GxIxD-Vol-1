@@ -1,0 +1,246 @@
+* {
+  box-sizing: border-box;
+}
+
+.circle {
+  background-color: black;
+  width: 100px;
+  height: 100px;
+  margin: 100px 0 0 100px;
+  border-radius: 50px;
+}
+
+.circleHalf {
+  background-color: black;
+  width: 100px;
+  height: 200px;
+  margin: 100px 0 0 100px;
+  border-radius: 0 200px 200px 0;
+}
+
+.circleQuarter {
+  background-color: black;
+  width: 100px;
+  height: 100px;
+  margin: 100px 0 0 100px;
+  border-radius: 0 200px 0 0;
+}
+
+.oval {
+  width: 30px;
+  height: 100px;
+  background-color: black;
+  margin: 100px 0 0 100px;
+  border-radius: 100%;
+}
+
+.lineWrapper {
+  display: flex;
+}
+
+.lineWrapper div {
+  width: 100%;
+  height: 100px;
+}
+
+.lineWrapper div:nth-child(odd) {
+  background-color: black;
+}
+
+.lineWrapper div:nth-child(even) {
+  background-color: white;
+}
+
+.squareWrapper {
+  display: flex;
+}
+
+.squareWrapper div {
+  width: 100%;
+  /* height: auto; */
+  aspect-ratio: 1 / 1;
+}
+
+.squareWrapper.top div:nth-child(odd) {
+  background-color: black;
+  border-radius: 200px 0 0 0;
+}
+
+.squareWrapper.top div:nth-child(even) {
+  background-color: grey;
+  border-radius: 0 200px 0 0;
+}
+
+.squareWrapper.bottom div:nth-child(odd) {
+  background-color: grey;
+  border-radius: 0 0 0 200px;
+}
+
+.squareWrapper.bottom div:nth-child(even) {
+  background-color: black;
+  border-radius: 0 0 200px 0;
+}
+
+.turningCircles {
+  display: flex;
+}
+
+.turningCircle {
+  width: 20%;
+  /* transition: all 3s ease-in-out; */
+  animation-name: turnCircle;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+
+.turningCircle:hover {
+  /* animation: turnCircle 1s linear infinite; */
+  animation-duration: 10s;
+}
+
+.row {
+  display: flex;
+}
+
+.quarter {
+  width: 50%;
+  aspect-ratio: 1 / 1;
+}
+
+.row:nth-child(odd) .quarter:nth-child(odd) {
+  /* первый в первом ряду */
+  background-color: black;
+  border-radius: 200px 0 0 0;
+}
+
+.row:nth-child(odd) .quarter:nth-child(even) {
+  /* второй в первом ряду */
+  background-color: grey;
+  border-radius: 0 200px 0 0;
+}
+
+.row:nth-child(even) .quarter:nth-child(odd) {
+  /* первый во втором ряду */
+  background-color: grey;
+  border-radius: 0 0 0 200px;
+}
+
+.row:nth-child(even) .quarter:nth-child(even) {
+  /* второй во втором ряду */
+  background-color: black;
+  border-radius: 0 0 200px 0;
+}
+
+@keyframes turnCircle {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.responsiveText {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+}
+
+.scalingText {
+  font-family: Arial, Helvetica, sans-serif;
+
+  /* Плагин для scaling вёрстки */
+  /* https://marketplace.visualstudio.com/items?itemName=cipchk.cssrem */
+
+  /* Не забудьте настроить в Settings ширину шаблона */
+
+  /* Cmd + Shift + P */
+  /* Пишу CSSRem: Px to VW */
+  /* Нажимаю Enter */
+  font-size: 1.5625vw;
+}
+
+.ovalWrapper {
+  display: flex;
+  justify-content: space-around;
+  gap: 50px;
+}
+
+.squizedOval {
+  width: 100%;
+  height: 600px;
+  background-color: black;
+  border-radius: 100%;
+}
+
+.squizedOval:nth-child(1) {
+  width: 30%;
+}
+
+.squizedOval:nth-child(2) {
+  width: 20%;
+}
+
+.squizedOval:nth-child(3) {
+  width: 5%;
+}
+
+.squizedOval:nth-child(4) {
+  width: 15%;
+}
+
+.squizedOval:nth-child(5) {
+  width: 40%;
+}
+
+.blueprintGridWrapper {
+  /* padding: 50px; */
+  padding: 2.6042vw;
+  background-color: rgb(62, 76, 208);
+}
+
+/* width: calc((100vw - 2.6042vw - 2.6042vw - 0.1563vw - 0.1563vw) / 150); */
+
+.blueprintGrid {
+  position: relative;
+  /* border: 3px solid white; */
+  border: 0.1563vw solid white;
+}
+
+.blueprintRow {
+  display: flex;
+}
+
+.blueprintSquare {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  /* border-right: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); */
+
+  border-right: 0.0521vw solid rgba(255, 255, 255, 0.5);
+  border-bottom: 0.0521vw solid rgba(255, 255, 255, 0.5);
+}
+
+.sampleRectangle {
+  position: absolute;
+  top: calc((100vw - 2.6042vw - 2.6042vw - 0.1563vw - 0.1563vw) / 150 * 20);
+  left: calc((100vw - 2.6042vw - 2.6042vw - 0.1563vw - 0.1563vw) / 150 * 30);
+  width: calc((100vw - 2.6042vw - 2.6042vw - 0.1563vw - 0.1563vw) / 150 * 5);
+  height: calc((100vw - 2.6042vw - 2.6042vw - 0.1563vw - 0.1563vw) / 150 * 10);
+  /* aspect-ratio: 1 / 2; */
+  background-color: rgb(157, 255, 0);
+}
+
+.sampleText {
+  position: absolute;
+  top: calc((100vw - 2.6042vw - 2.6042vw - 0.1563vw - 0.1563vw) / 150 * 50);
+  left: calc((100vw - 2.6042vw - 2.6042vw - 0.1563vw - 0.1563vw) / 150 * 60);
+  width: calc((100vw - 2.6042vw - 2.6042vw - 0.1563vw - 0.1563vw) / 150 * 80);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 1.5625vw;
+  line-height: 2.52vw;
+  padding-top: 0.12vw;
+  color: white;
+}
