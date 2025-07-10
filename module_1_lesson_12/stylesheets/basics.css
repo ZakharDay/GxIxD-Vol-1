@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: 'Alumni Sans SC';
+}
+
+body {
+  background-color: antiquewhite;
+}
+
+h1,
+h2,
+h3 {
+  background-color: var(--acid-green);
+  color: var(--almost-black);
+  text-align: center;
+}
+
+h1 {
+  padding: calc(var(--large-padding) / 2) var(--large-padding);
+  margin: calc(var(--large-padding) / 2) var(--large-padding);
+  font-size: var(--h1-font-size);
+}
+
+h2 {
+  padding: calc(var(--small-padding) / 2) var(--small-padding);
+  margin: calc(var(--small-padding) / 2) var(--small-padding);
+  font-size: var(--h2-font-size);
+}
+
+h3 {
+  padding: calc(var(--tiny-padding) / 2) var(--tiny-padding);
+  margin: calc(var(--tiny-padding) / 2) var(--tiny-padding);
+  font-size: var(--h3-font-size);
+}

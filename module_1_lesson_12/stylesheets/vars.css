@@ -1,0 +1,33 @@
+:root {
+  --almost-black: #2c2c2c;
+  --acid-green: #d4ff00;
+  --blue: #1d21fe;
+
+  --large-padding: 224px;
+  --small-padding: 112px;
+  --tiny-padding: 60px;
+
+  --h1-font-size: 60px;
+  --h2-font-size: 40px;
+  --h3-font-size: 20px;
+}
+
+@media (max-width: 1000px) {
+  :root {
+    --large-padding: 112px;
+    --small-padding: 56px;
+    --tiny-padding: 30px;
+
+    --h1-font-size: 30px;
+    --h2-font-size: 20px;
+    --h3-font-size: 10px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --almost-black: #d4ff00;
+    --acid-green: #2c2c2c;
+    --blue: #1d21fe;
+  }
+}
