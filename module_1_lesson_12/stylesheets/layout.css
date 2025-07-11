@@ -1,6 +1,7 @@
 .testImage {
   width: 1336px;
   height: 630px;
+  margin: 100px auto;
   background-image: url('../images/test_image.png');
   background-size: cover;
 }

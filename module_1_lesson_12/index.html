@@ -8,22 +8,44 @@
   </head>
 
   <body>
-    <h1>Здравствуй Мир!</h1>
-    <h2>Здравствуй Мир!</h2>
-    <h3>Здравствуй Мир!</h3>
+    <h1>
+      <a href="#wrong_svg_test">Здравствуй Мир!</a>
+    </h1>
+
+    <h2>
+      <a href="#jpeg_test">Здравствуй Мир!</a>
+    </h2>
+
+    <h3>
+      <a href="#png_test">Здравствуй Мир!</a>
+    </h3>
 
     <img
       src="images/test_image.png"
       srcset="images/test_image@2x.png 2x, images/test_image@3x.png 3x"
     />
 
-    <img src="images/wrong_svg_test.svg" />
-    <img src="images/jpeg_test.jpg" />
+    <img id="wrong_svg_test" src="images/wrong_svg_test.svg" />
+
+    <img id="jpeg_test" src="images/jpeg_test.jpg" />
+
     <img
+      id="png_test"
       src="images/png_test.png"
       srcset="images/png_test@2x.png 2x, images/png_test@3x.png 3x"
     />
 
     <div class="testImage"></div>
+
+    <img src="images/genuary_24_v7.gif" />
+
+    <video
+      controls
+      autoplay
+      muted
+      width="500"
+      src="images/genuary_24_v7.mp4"
+      poster="images/genuary_24_v7.jpg"
+    ></video>
   </body>
 </html>

@@ -37,3 +37,14 @@ h3 {
   margin: calc(var(--tiny-padding) / 2) var(--tiny-padding);
   font-size: var(--h3-font-size);
 }
+
+img,
+video {
+  display: block;
+  margin: 100px auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
