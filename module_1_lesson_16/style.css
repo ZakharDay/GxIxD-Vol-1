@@ -1,0 +1,253 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+div.animationTest {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+}
+
+div.animationTest:nth-child(1) {
+  animation-name: test;
+  animation-iteration-count: infinite;
+  animation-duration: 5s;
+  /* animation-delay: 5s; */
+}
+
+div.animationTest:nth-child(2) {
+  animation-name: test;
+  animation-iteration-count: infinite;
+  animation-duration: 5s;
+  animation-delay: 5s;
+}
+
+@keyframes test {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+span.animationTest {
+  display: block;
+  width: 100px;
+  height: 100px;
+}
+
+span.animationTest:nth-child(3) {
+  background-color: black;
+  animation-name: rainbow;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-delay: 0s;
+}
+
+span.animationTest:nth-child(4) {
+  background-color: black;
+  animation-name: rainbow;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-delay: 1s;
+}
+
+span.animationTest:nth-child(5) {
+  background-color: black;
+  animation-name: rainbow;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-delay: 2s;
+}
+
+span.animationTest:nth-child(6) {
+  background-color: black;
+  animation-name: rainbow;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-delay: 3s;
+}
+
+span.animationTest:nth-child(7) {
+  background-color: black;
+  animation-name: rainbow;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-delay: 4s;
+}
+
+span.animationTest:nth-child(8) {
+  background-color: black;
+  animation-name: rainbow;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-delay: 5s;
+}
+
+span.animationTest:nth-child(9) {
+  background-color: black;
+  animation-name: rainbow;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-delay: 6s;
+}
+
+span.animationTest:nth-child(10) {
+  background-color: black;
+  animation-name: rainbow;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-delay: 7s;
+}
+
+/* span:nth-of-type(1) {
+  background-color: black;
+  animation-name: rainbow;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-delay: 0s;
+}
+
+span:nth-of-type(2) {
+  background-color: black;
+  animation-name: rainbow;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-delay: 1s;
+}
+
+span:nth-of-type(3) {
+  background-color: black;
+  animation-name: rainbow;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-delay: 2s;
+}
+
+span:nth-of-type(4) {
+  background-color: black;
+  animation-name: rainbow;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-delay: 3s;
+}
+
+span:nth-of-type(5) {
+  background-color: black;
+  animation-name: rainbow;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-delay: 4s;
+}
+
+span:nth-of-type(6) {
+  background-color: black;
+  animation-name: rainbow;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-delay: 5s;
+}
+
+span:nth-of-type(7) {
+  background-color: black;
+  animation-name: rainbow;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-delay: 6s;
+}
+
+span:nth-of-type(8) {
+  background-color: black;
+  animation-name: rainbow;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-delay: 7s;
+} */
+
+@keyframes rainbow {
+  0% {
+    background-color: hsl(0deg 80% 50%);
+  }
+
+  12.5% {
+    background-color: hsl(45deg 80% 50%);
+  }
+
+  25% {
+    background-color: hsl(90deg 80% 50%);
+  }
+
+  37.5% {
+    background-color: hsl(135deg 80% 50%);
+  }
+
+  50% {
+    background-color: hsl(180deg 80% 50%);
+  }
+
+  62.5% {
+    background-color: hsl(225deg 80% 50%);
+  }
+
+  75% {
+    background-color: hsl(270deg 80% 50%);
+  }
+
+  87.5% {
+    background-color: hsl(315deg 80% 50%);
+  }
+
+  100% {
+    background-color: hsl(360deg 80% 50%);
+  }
+}
+
+/* *:nth-child(1) {
+  background-color: chartreuse !important;
+  border: 10px solid black;
+} */
+
+.ribbonWrapper {
+  background-color: red;
+  transform: rotate(5deg);
+  margin-left: -20px;
+  overflow: hidden;
+  width: 110vw;
+}
+
+.ribbonRail {
+  display: flex;
+  background: yellow;
+  width: max-content;
+  transform: translateX(-314vw);
+  animation: ribbon 3s linear 0s infinite;
+}
+
+.ribbonRail div {
+  flex-shrink: 0;
+  width: 5vw;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background-color: black;
+}
+
+@keyframes ribbon {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-5vw);
+  }
+}
