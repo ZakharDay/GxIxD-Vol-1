@@ -1,0 +1,63 @@
+* {
+  transition: all 0.3s ease-in-out;
+}
+
+body {
+  background-color: antiquewhite;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+  user-select: none;
+}
+
+.squaresContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.square {
+  /* display: inline-block; */
+  width: 5vw;
+  height: 5vw;
+  background-color: black;
+  transition: all 0.3s ease-in-out;
+}
+
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.black {
+  background-color: black;
+}
+
+.killAllButton {
+  position: fixed;
+  width: 100px;
+  height: 60px;
+  line-height: 60px;
+  background-color: black;
+  color: white;
+  border-radius: 4px;
+  top: 20px;
+  right: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.killAllButton:hover {
+  background-color: rgb(60, 60, 60);
+}
