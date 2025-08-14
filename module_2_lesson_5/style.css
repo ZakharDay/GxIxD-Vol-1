@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.capcha {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.capchaText {
+  font-size: 30px;
+}
+
+.capchaInput {
+  width: 300px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+}
+
+.capchaButton {
+  cursor: pointer;
+  width: 150px;
+  height: 60px;
+  line-height: 60px;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}

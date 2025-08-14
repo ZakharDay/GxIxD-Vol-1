@@ -37,6 +37,166 @@ section.case4 {
   background-color: antiquewhite;
 }
 
+/*  */
+/* CASE 1 */
+/*  */
+
+section.case1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+section.case1 .card {
+  width: 200px;
+  min-width: 15%;
+  height: 40%;
+}
+
+section.case1 .front {
+  height: 100%;
+  background-color: black;
+}
+
+section.case1 .back {
+  display: none;
+  height: 100%;
+  line-height: 100px;
+  text-align: center;
+  border: 1px solid black;
+  background-color: aquamarine;
+}
+
+section.case1 .card.opened .front {
+  display: none;
+}
+
+section.case1 .card.opened .back {
+  display: block;
+}
+
+/*  */
+/* CASE 1 END */
+/*  */
+
+/*  */
+/* CASE 2 */
+/*  */
+
+section.case2 {
+  position: relative;
+}
+
+section.case2 .watch {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  background-color: rgb(242, 255, 254);
+  border: 1px solid black;
+}
+
+section.case2 .mark,
+section.case2 .hour,
+section.case2 .minute,
+section.case2 .second,
+section.case2 .circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+section.case2 .mark:nth-child(2) {
+  transform: rotate(30deg);
+}
+
+section.case2 .mark:nth-child(3) {
+  transform: rotate(60deg);
+}
+
+section.case2 .mark:nth-child(4) {
+  transform: rotate(90deg);
+}
+
+section.case2 .mark:nth-child(5) {
+  transform: rotate(120deg);
+}
+
+section.case2 .mark:nth-child(6) {
+  transform: rotate(150deg);
+}
+
+section.case2 .mark::before {
+  content: '';
+  width: 2px;
+  height: 10px;
+  background-color: black;
+}
+
+section.case2 .mark::after {
+  content: '';
+  width: 2px;
+  height: 10px;
+  background-color: black;
+}
+
+section.case2 .hour::before,
+section.case2 .minute::before,
+section.case2 .second::before {
+  margin-top: 50px;
+}
+
+section.case2 .hour {
+  transition: all 0.3s ease-in-out;
+}
+
+section.case2 .hour::before {
+  content: '';
+  width: 3px;
+  height: 20px;
+  background-color: black;
+}
+
+section.case2 .minute::before {
+  content: '';
+  width: 2px;
+  height: 40px;
+  background-color: black;
+}
+
+section.case2 .second::before {
+  content: '';
+  width: 1px;
+  height: 40px;
+  background-color: red;
+}
+
+section.case2 .circle {
+  justify-content: center;
+  align-items: center;
+}
+
+section.case2 .circle::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border: 2px solid black;
+  border-radius: 4px;
+  background-color: white;
+}
+
+/*  */
+/* CASE 2 END */
+/*  */
+
 section.case3 > div {
   position: absolute;
   padding: 10px;
