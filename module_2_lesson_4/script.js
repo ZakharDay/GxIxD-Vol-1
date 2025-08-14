@@ -293,6 +293,7 @@ function initCase3() {
 // CASE 4
 //
 
+let currentFrame = 0;
 let elementVerticalDirection = 'down';
 let elementHorizontalDirection = 'right';
 let elementX, elementY, speed;
@@ -330,27 +331,200 @@ function changeElementPosition(
 
   if (top >= containerTop + containerHeight - height) {
     elementVerticalDirection = 'up';
+
     changeSpeed();
+
+    calcNextCollision(
+      element,
+      elementVerticalDirection,
+      elementHorizontalDirection,
+      containerWidth,
+      containerHeight,
+      containerLeft,
+      containerTop,
+      width,
+      height,
+      left,
+      top
+    );
   }
 
   if (left >= containerLeft + containerWidth - width) {
     elementHorizontalDirection = 'left';
     changeSpeed();
+
+    calcNextCollision(
+      element,
+      elementVerticalDirection,
+      elementHorizontalDirection,
+      containerWidth,
+      containerHeight,
+      containerLeft,
+      containerTop,
+      width,
+      height,
+      left,
+      top
+    );
   }
 
   if (top <= containerTop) {
     elementVerticalDirection = 'down';
     changeSpeed();
+
+    calcNextCollision(
+      element,
+      elementVerticalDirection,
+      elementHorizontalDirection,
+      containerWidth,
+      containerHeight,
+      containerLeft,
+      containerTop,
+      width,
+      height,
+      left,
+      top
+    );
   }
 
   if (left <= containerLeft) {
     elementHorizontalDirection = 'right';
     changeSpeed();
+
+    calcNextCollision(
+      element,
+      elementVerticalDirection,
+      elementHorizontalDirection,
+      containerWidth,
+      containerHeight,
+      containerLeft,
+      containerTop,
+      width,
+      height,
+      left,
+      top
+    );
   }
 }
 
 function changeSpeed() {
   speed = getRandomInt(1, 5);
+}
+
+function calcNextCollision(
+  element,
+  elementVerticalDirection,
+  elementHorizontalDirection,
+  containerWidth,
+  containerHeight,
+  containerLeft,
+  containerTop,
+  width,
+  height,
+  left,
+  top
+) {
+  const s = speed;
+  let frame = currentFrame;
+  let x = left;
+  let y = top;
+
+  let nextCollisionFrame;
+
+  while (nextCollisionFrame == undefined) {
+    // nextCollisionFrame = 1;
+
+    if (elementVerticalDirection == 'up') {
+      y -= s;
+    } else {
+      y += s;
+    }
+
+    if (elementHorizontalDirection == 'left') {
+      x -= s;
+    } else {
+      x += s;
+    }
+
+    const collision = detectCollision(
+      containerWidth,
+      containerHeight,
+      containerLeft,
+      containerTop,
+      width,
+      height,
+      x,
+      y
+    );
+
+    // console.log(collision);
+
+    if (collision == 1) {
+      nextCollisionFrame = frame;
+      console.log(currentFrame, frame, nextCollisionFrame);
+    } else {
+      frame++;
+    }
+  }
+}
+
+function detectCollision(
+  containerWidth,
+  containerHeight,
+  containerLeft,
+  containerTop,
+  width,
+  height,
+  left,
+  top
+) {
+  // console.log('==========================');
+
+  // console.log(
+  //   containerWidth,
+  //   containerHeight,
+  //   containerLeft,
+  //   containerTop,
+  //   width,
+  //   height,
+  //   left,
+  //   top
+  // );
+
+  if (top >= containerTop + containerHeight - height) {
+    // console.log(
+    //   '1',
+    //   '>=',
+    //   top >= containerTop + containerHeight - height,
+    //   top,
+    //   containerTop + containerHeight - height
+    // );
+
+    return true;
+  }
+
+  if (left >= containerLeft + containerWidth - width) {
+    // console.log(
+    //   '2',
+    //   '>=',
+    //   left >= containerLeft + containerWidth - width,
+    //   left,
+    //   containerLeft + containerWidth - width
+    // );
+    return true;
+  }
+
+  if (top <= containerTop) {
+    // console.log('3', '<=', top <= containerTop, top, containerTop);
+    return true;
+  }
+
+  if (left <= containerLeft) {
+    // console.log('4', '<=', left <= containerLeft, left, containerLeft);
+    return true;
+  }
+
+  return false;
 }
 
 function initCase4() {
@@ -366,6 +540,7 @@ function initCase4() {
 
   setInterval(() => {
     changeElementPosition(element, width, height, left, top);
+    currentFrame++;
   }, speed);
 }
 
