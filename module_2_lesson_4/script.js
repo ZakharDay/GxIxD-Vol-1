@@ -293,11 +293,37 @@ function initCase3() {
 // CASE 4
 //
 
+const minSize = 20;
+const maxSize = 60;
+
 let currentFrame = 0;
+let framesTillNextCollision = 0;
 let elementVerticalDirection = 'down';
 let elementHorizontalDirection = 'right';
-let size = 30;
-let elementX, elementY, speed;
+let elementSizeDirection = 'up';
+let size = 20;
+let elementX, elementY, speed, frequency;
+
+function changeElementSize() {
+  if (frequency) {
+    const framesInCycle = framesTillNextCollision / frequency / 2;
+    const pixelsInFrame = (maxSize - minSize) / framesInCycle;
+
+    if (elementSizeDirection == 'up') {
+      size += pixelsInFrame;
+    } else {
+      size -= pixelsInFrame;
+    }
+
+    if (size >= maxSize) {
+      elementSizeDirection = 'down';
+    }
+
+    if (size <= minSize) {
+      elementSizeDirection = 'up';
+    }
+  }
+}
 
 function changeElementPosition(
   element,
@@ -328,8 +354,8 @@ function changeElementPosition(
 
   element.style.width = `${size}px`;
   element.style.height = `${size}px`;
-  element.style.left = `${elementX}px`;
-  element.style.top = `${elementY}px`;
+  element.style.left = `${elementX - size / 2}px`;
+  element.style.top = `${elementY - size / 2}px`;
 
   const { left, top } = element.getBoundingClientRect();
 
@@ -337,6 +363,7 @@ function changeElementPosition(
     elementVerticalDirection = 'up';
 
     changeSpeed();
+    changeFrequency();
 
     calcNextCollision(
       containerWidth,
@@ -352,6 +379,7 @@ function changeElementPosition(
     elementHorizontalDirection = 'left';
 
     changeSpeed();
+    changeFrequency();
 
     calcNextCollision(
       containerWidth,
@@ -367,6 +395,7 @@ function changeElementPosition(
     elementVerticalDirection = 'down';
 
     changeSpeed();
+    changeFrequency();
 
     calcNextCollision(
       containerWidth,
@@ -382,6 +411,7 @@ function changeElementPosition(
     elementHorizontalDirection = 'right';
 
     changeSpeed();
+    changeFrequency();
 
     calcNextCollision(
       containerWidth,
@@ -396,6 +426,10 @@ function changeElementPosition(
 
 function changeSpeed() {
   speed = getRandomInt(1, 5);
+}
+
+function changeFrequency() {
+  frequency = getRandomInt(1, 7);
 }
 
 function calcNextCollision(
@@ -436,7 +470,9 @@ function calcNextCollision(
     );
 
     if (collision == 1) {
+      frame++;
       nextCollisionFrame = frame;
+      framesTillNextCollision = nextCollisionFrame - currentFrame;
     } else {
       frame++;
     }
@@ -485,11 +521,11 @@ function initCase4() {
   const element = document.createElement('div');
   container.appendChild(element);
 
-  // const frameRate = 1000 / 60;
-  const frameRate = 100;
+  const frameRate = 1000 / 60;
 
   setInterval(() => {
     changeElementPosition(element, width, height, left, top);
+    changeElementSize(element);
     currentFrame++;
   }, frameRate);
 }
