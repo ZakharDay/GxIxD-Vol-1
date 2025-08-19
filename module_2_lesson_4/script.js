@@ -296,6 +296,7 @@ function initCase3() {
 let currentFrame = 0;
 let elementVerticalDirection = 'down';
 let elementHorizontalDirection = 'right';
+let size = 30;
 let elementX, elementY, speed;
 
 function changeElementPosition(
@@ -305,9 +306,8 @@ function changeElementPosition(
   containerLeft,
   containerTop
 ) {
-  const { width, height, left, top } = element.getBoundingClientRect();
-  const maxLeft = containerWidth - width;
-  const maxTop = containerHeight - height;
+  const maxLeft = containerWidth - size;
+  const maxTop = containerHeight - size;
 
   if (!elementX && !elementY) {
     elementX = getRandomInt(0, maxLeft);
@@ -326,43 +326,38 @@ function changeElementPosition(
     }
   }
 
+  element.style.width = `${size}px`;
+  element.style.height = `${size}px`;
   element.style.left = `${elementX}px`;
   element.style.top = `${elementY}px`;
 
-  if (top >= containerTop + containerHeight - height) {
+  const { left, top } = element.getBoundingClientRect();
+
+  if (top >= containerTop + maxTop) {
     elementVerticalDirection = 'up';
 
     changeSpeed();
 
     calcNextCollision(
-      element,
-      elementVerticalDirection,
-      elementHorizontalDirection,
       containerWidth,
       containerHeight,
       containerLeft,
       containerTop,
-      width,
-      height,
       left,
       top
     );
   }
 
-  if (left >= containerLeft + containerWidth - width) {
+  if (left >= containerLeft + maxLeft) {
     elementHorizontalDirection = 'left';
+
     changeSpeed();
 
     calcNextCollision(
-      element,
-      elementVerticalDirection,
-      elementHorizontalDirection,
       containerWidth,
       containerHeight,
       containerLeft,
       containerTop,
-      width,
-      height,
       left,
       top
     );
@@ -370,18 +365,14 @@ function changeElementPosition(
 
   if (top <= containerTop) {
     elementVerticalDirection = 'down';
+
     changeSpeed();
 
     calcNextCollision(
-      element,
-      elementVerticalDirection,
-      elementHorizontalDirection,
       containerWidth,
       containerHeight,
       containerLeft,
       containerTop,
-      width,
-      height,
       left,
       top
     );
@@ -389,18 +380,14 @@ function changeElementPosition(
 
   if (left <= containerLeft) {
     elementHorizontalDirection = 'right';
+
     changeSpeed();
 
     calcNextCollision(
-      element,
-      elementVerticalDirection,
-      elementHorizontalDirection,
       containerWidth,
       containerHeight,
       containerLeft,
       containerTop,
-      width,
-      height,
       left,
       top
     );
@@ -412,15 +399,10 @@ function changeSpeed() {
 }
 
 function calcNextCollision(
-  element,
-  elementVerticalDirection,
-  elementHorizontalDirection,
   containerWidth,
   containerHeight,
   containerLeft,
   containerTop,
-  width,
-  height,
   left,
   top
 ) {
@@ -432,8 +414,6 @@ function calcNextCollision(
   let nextCollisionFrame;
 
   while (nextCollisionFrame == undefined) {
-    // nextCollisionFrame = 1;
-
     if (elementVerticalDirection == 'up') {
       y -= s;
     } else {
@@ -451,17 +431,12 @@ function calcNextCollision(
       containerHeight,
       containerLeft,
       containerTop,
-      width,
-      height,
       x,
       y
     );
 
-    // console.log(collision);
-
     if (collision == 1) {
       nextCollisionFrame = frame;
-      console.log(currentFrame, frame, nextCollisionFrame);
     } else {
       frame++;
     }
@@ -473,54 +448,28 @@ function detectCollision(
   containerHeight,
   containerLeft,
   containerTop,
-  width,
-  height,
   left,
   top
 ) {
-  // console.log('==========================');
-
-  // console.log(
-  //   containerWidth,
-  //   containerHeight,
-  //   containerLeft,
-  //   containerTop,
-  //   width,
-  //   height,
-  //   left,
-  //   top
-  // );
-
-  if (top >= containerTop + containerHeight - height) {
-    // console.log(
-    //   '1',
-    //   '>=',
-    //   top >= containerTop + containerHeight - height,
-    //   top,
-    //   containerTop + containerHeight - height
-    // );
-
+  if (
+    elementVerticalDirection == 'down' &&
+    top >= containerTop + containerHeight - size
+  ) {
     return true;
   }
 
-  if (left >= containerLeft + containerWidth - width) {
-    // console.log(
-    //   '2',
-    //   '>=',
-    //   left >= containerLeft + containerWidth - width,
-    //   left,
-    //   containerLeft + containerWidth - width
-    // );
+  if (
+    elementHorizontalDirection == 'right' &&
+    left >= containerLeft + containerWidth - size
+  ) {
     return true;
   }
 
-  if (top <= containerTop) {
-    // console.log('3', '<=', top <= containerTop, top, containerTop);
+  if (elementVerticalDirection == 'up' && top <= containerTop) {
     return true;
   }
 
-  if (left <= containerLeft) {
-    // console.log('4', '<=', left <= containerLeft, left, containerLeft);
+  if (elementHorizontalDirection == 'left' && left <= containerLeft) {
     return true;
   }
 
@@ -536,12 +485,13 @@ function initCase4() {
   const element = document.createElement('div');
   container.appendChild(element);
 
-  const speed = 1000 / 60;
+  // const frameRate = 1000 / 60;
+  const frameRate = 100;
 
   setInterval(() => {
     changeElementPosition(element, width, height, left, top);
     currentFrame++;
-  }, speed);
+  }, frameRate);
 }
 
 //
