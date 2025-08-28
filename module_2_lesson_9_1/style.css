@@ -1,0 +1,29 @@
+body {
+  font-size: 100px;
+}
+
+div {
+  width: 1000px;
+  height: 300px;
+  background-color: aliceblue;
+}
+
+div::before {
+  content: 'before text1';
+  background-color: aquamarine;
+}
+
+div:hover::before {
+  content: 'before text2';
+}
+
+div::after {
+  position: absolute;
+  z-index: 2;
+  content: 'after text1';
+  background-color: cadetblue;
+}
+
+div:hover::after {
+  content: 'after text2';
+}

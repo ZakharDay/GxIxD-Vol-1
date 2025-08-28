@@ -4,12 +4,19 @@ body {
 }
 
 body {
-  margin: 0;
-  /* prettier-ignore */
-  background-image: linear-gradient(90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #ee7752);
-  background-size: 600% 100%;
+  background-image: linear-gradient(
+    90deg,
+    #ee7752,
+    #e73c7e,
+    #23a6d5,
+    #23d5ab,
+    #ee7752,
+    #e73c7e
+  );
+  background-size: 500% 100%;
   animation: gradient 20s linear infinite;
   height: 100vh;
+  margin: 0;
 }
 
 @keyframes gradient {
