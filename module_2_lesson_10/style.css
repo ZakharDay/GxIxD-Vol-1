@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  background-color: antiquewhite;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 150px;
+}
+
+#case1 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+  height: 300px;
+  background-color: black;
+}
+
+.squareButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+}
+
+.squareButton div {
+  user-select: none;
+  pointer-events: none;
+}
+
+.squareButton div.circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: white;
+}
+
+.squareButton div.square {
+  width: 30px;
+  height: 30px;
+  background-color: white;
+}
+
+.squareButton div.triangle {
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 0 15px 26px 15px;
+  border-color: transparent transparent white transparent;
+  transform: rotate(0deg);
+}
+
+#score,
+#lives {
+  padding: 5px;
+  background: white;
+  text-align: center;
+}
+
+.button {
+  padding: 20px;
+  margin-top: 10px;
+  background: black;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
