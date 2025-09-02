@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  user-select: none;
 }
 
 html,
@@ -49,7 +50,6 @@ section {
 }
 
 .squareButton div {
-  user-select: none;
   pointer-events: none;
 }
 

@@ -16,35 +16,23 @@ function getRandomInt(min, max) {
 // UTILITIES END
 //
 
-const canvasSize = 300;
-const squareSize = 50;
-const padding = 10;
-
-const cycleLimit = canvasSize / squareSize;
 const squareFigures = ['empty', 'square', 'circle', 'triangle'];
-const squareFigureColor = 255;
+const frameRateInMils = 500;
 
-const frameRateInMils = 1000 / 2;
-
-let squares = [];
-let state = 'enabled';
-let lives = 3;
-let score = 0;
-
-let container;
+let container, squares, state, lives, score;
 
 function showRestartButton() {
-  const container = document.getElementById('content');
+  const content = document.getElementById('content');
 
   const button = document.createElement('div');
   button.classList.add('button');
   button.innerText = 'Restart Game';
 
-  container.appendChild(button);
+  content.appendChild(button);
 
   button.addEventListener('click', () => {
     button.remove();
-    startGame();
+    resetGame();
   });
 }
 
@@ -86,7 +74,7 @@ function updateSquares() {
 
   squares.forEach((square) => {
     if (square.state == 'initial') {
-      const updatedSquare = generateSquare(square.column, square.row);
+      const updatedSquare = generateSquare(square.index);
       updatedSquares.push(updatedSquare);
     } else {
       updatedSquares.push(square);
@@ -100,18 +88,20 @@ function markAllActiveAsError() {
   const updatedSquares = [];
 
   squares.forEach((square) => {
+    const element = container.children[square.index];
     if (square.state == 'active') {
       square.state = 'error';
     }
 
     updatedSquares.push(square);
+    rerenderSquare(square, element);
   });
 
   squares = updatedSquares;
 }
 
-function activateSquare(p) {
-  const activeSquares = squares.filter((square) => square.state == 'active');
+function activateSquare(square, element) {
+  const activeSquares = squares.filter((s) => s.state == 'active');
   let uniqFigures;
 
   if (activeSquares.length > 0) {
@@ -122,38 +112,32 @@ function activateSquare(p) {
     uniqFigures = [...new Set(activeSquareFigures)];
   }
 
-  squares.forEach((square) => {
-    if (
-      p.mouseX >= square.x &&
-      p.mouseX < square.x + squareSize &&
-      p.mouseY >= square.y &&
-      p.mouseY < square.y + squareSize
-    ) {
-      if (square.state == 'initial') {
-        if (activeSquares.length > 0) {
-          if (square.figure == uniqFigures[0]) {
-            square.state = 'active';
+  if (square.state == 'initial') {
+    if (activeSquares.length > 0) {
+      if (square.figure == uniqFigures[0]) {
+        square.state = 'active';
 
-            if (activeSquares.length >= 2) {
-              state = 'win';
-              incrementAndUpdateScore();
-            }
-          } else {
-            square.state = 'error';
-            state = 'error';
-            markAllActiveAsError();
-            decrementAndUpdateLives();
+        if (activeSquares.length >= 2) {
+          state = 'win';
+          incrementAndUpdateScore();
+        }
+      } else {
+        square.state = 'error';
+        state = 'error';
+        markAllActiveAsError();
+        decrementAndUpdateLives();
 
-            if (lives <= 0) {
-              showRestartButton();
-            }
-          }
-        } else {
-          square.state = 'active';
+        if (lives <= 0) {
+          showRestartButton();
         }
       }
+    } else {
+      square.state = 'active';
     }
-  });
+  }
+
+  squares[square.index] = square;
+  rerenderSquare(square, element);
 }
 
 function renderSquares() {
@@ -167,71 +151,81 @@ function renderSquares() {
 
     element.appendChild(figure);
     container.appendChild(element);
+
+    element.addEventListener('mousedown', () => {
+      state = 'disabled';
+
+      if (lives > 0) {
+        activateSquare(squares[square.index], element);
+      }
+    });
+
+    element.addEventListener('mousemove', () => {
+      if (state == 'disabled' && lives > 0) {
+        activateSquare(squares[square.index], element);
+      }
+    });
   });
 }
 
 function rerenderSquares() {
   squares.forEach((square, index) => {
     const element = container.children[index];
-    let color;
-
-    switch (square.state) {
-      case 'active':
-        color = `rgb(${square.color.r}, ${square.color.b}, ${square.color.g})`;
-        break;
-
-      case 'error':
-        color = `rgb(${square.color.g}, ${square.color.r}, ${square.color.b})`;
-        break;
-
-      default:
-        color = `rgb(${square.color.r}, ${square.color.g}, ${square.color.b})`;
-        break;
-    }
-
-    element.children[0].className = '';
-    element.children[0].classList.add(square.figure);
-    element.style.backgroundColor = color;
+    rerenderSquare(square, element);
   });
 }
 
-function sketch1(p) {
-  p.mousePressed = () => {
-    state = 'disabled';
+function rerenderSquare(square, element) {
+  let color;
 
-    if (lives > 0) {
-      activateSquare(p);
-    }
-  };
+  switch (square.state) {
+    case 'active':
+      color = `rgb(${square.color.r}, ${square.color.b}, ${square.color.g})`;
+      break;
 
-  p.mouseDragged = () => {
-    if (state == 'disabled' && lives > 0) {
-      activateSquare(p);
-    }
-  };
+    case 'error':
+      color = `rgb(${square.color.g}, ${square.color.r}, ${square.color.b})`;
+      break;
 
-  p.mouseReleased = () => {
-    state = 'enabled';
+    default:
+      color = `rgb(${square.color.r}, ${square.color.g}, ${square.color.b})`;
+      break;
+  }
 
-    squares.forEach((square) => {
-      square.state = 'initial';
-    });
-  };
+  element.children[0].className = '';
+  element.children[0].classList.add(square.figure);
+  element.style.backgroundColor = color;
+}
+
+function resetGame() {
+  squares = [];
+  state = 'enabled';
+  lives = 3;
+  score = 0;
+
+  container.innerHTML = '';
+
+  createSquares();
+  renderSquares();
 }
 
 function initGame() {
   container = document.getElementById('case1');
 
-  createSquares();
-
-  if (container.children.length == 0) {
-    renderSquares();
-  }
+  resetGame();
 
   setInterval(() => {
     updateSquares();
     rerenderSquares();
   }, frameRateInMils);
+
+  document.addEventListener('mouseup', () => {
+    state = 'enabled';
+
+    squares.forEach((square) => {
+      square.state = 'initial';
+    });
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
