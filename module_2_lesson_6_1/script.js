@@ -17,7 +17,7 @@ function getRandomInt(min, max) {
 
 function setup() {
   createCanvas(canvas.width, canvas.height);
-  frameRate(1);
+  // frameRate(1);
 }
 
 function draw() {
