@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+
+  <body>
+    <audio id="C4" src="samples/C4.mp3"></audio>
+    <audio id="Db4" src="samples/Db4.mp3"></audio>
+    <audio id="D4" src="samples/D4.mp3"></audio>
+    <audio id="Eb4" src="samples/Eb4.mp3"></audio>
+    <audio id="E4" src="samples/E4.mp3"></audio>
+    <audio id="F4" src="samples/F4.mp3"></audio>
+    <audio id="Gb4" src="samples/Gb4.mp3"></audio>
+    <audio id="G4" src="samples/G4.mp3"></audio>
+    <audio id="Ab4" src="samples/Ab4.mp3"></audio>
+    <audio id="A4" src="samples/A4.mp3"></audio>
+    <audio id="Bb4" src="samples/Bb4.mp3"></audio>
+    <audio id="B4" src="samples/B4.mp3"></audio>
+
+    <section class="pianoRail">
+      <div class="octave">
+        <div class="white">
+          <div class="note" data-note="C4"></div>
+          <div class="note" data-note="D4"></div>
+          <div class="note" data-note="E4"></div>
+          <div class="note" data-note="F4"></div>
+          <div class="note" data-note="G4"></div>
+          <div class="note" data-note="A4"></div>
+          <div class="note" data-note="B4"></div>
+        </div>
+
+        <div class="black">
+          <div class="note" data-note="Db4"></div>
+          <div class="note" data-note="Eb4"></div>
+          <div></div>
+          <div class="note" data-note="Gb4"></div>
+          <div class="note" data-note="Ab4"></div>
+          <div class="note" data-note="Bb4"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tones">
+      <!-- prettier-ignore -->
+      <div class="tone" data-progression='{ "notes": [ "C4", "D4", "E4", "F4", "G4", "A4", "B4" ] }'>Name 1</div>
+      <!-- prettier-ignore -->
+      <div class="tone" data-progression='{ "notes": [ "C4", "E4", "A4", "Eb4", "Ab4" ] }'>Name 2</div>
+      <!-- prettier-ignore -->
+      <div class="tone" data-progression='{ "notes": [ "E4", "F4", "Db4", "Gb4", "Ab4", "Bb4" ] }'>Name 3</div>
+      <!-- prettier-ignore -->
+      <div class="tone" data-progression='{ "notes": [ "E4", "F4", "G4", "Bb4" ] }'>Name 4</div>
+    </section>
+  </body>
+</html>
