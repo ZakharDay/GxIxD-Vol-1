@@ -1,0 +1,108 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: 100vh;
+}
+
+.block {
+  width: 50vw;
+  height: 50vh;
+}
+
+.block video {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  opacity: 20%;
+}
+
+.block:hover video {
+  opacity: 90%;
+}
+
+.block-1 {
+  background-color: hsl(0, 0%, 13%);
+}
+
+.block-2 {
+  background-color: hsl(0, 0%, 13%);
+}
+
+.block-3 {
+  background-color: hsl(0, 0%, 13%);
+}
+
+.block-4 {
+  background-color: hsl(0, 0%, 13%);
+}
+
+@media (min-aspect-ratio: 16/9) {
+  #myvid {
+    height: 300%;
+    top: -100%;
+    /* or height: 200%; top: -50%;
+       or height: 400%; top: -150%; */
+  }
+}
+
+/* рисование */
+
+#drawingCanvas {
+  cursor: crosshair;
+  display: block;
+  margin: 0;
+}
+
+.draw {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+}
+
+#clearBtn {
+  display: flex;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+#clearBtn:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+}
+
+/* рисование */
+
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    gap: 0px;
+  }
+}

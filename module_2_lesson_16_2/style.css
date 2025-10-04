@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+
+section {
+  display: grid;
+  width: 600px;
+  height: 600px;
+}
+
+div {
+  /* border: 1px solid black; */
+
+  &:nth-child(odd) {
+    background-color: aqua;
+  }
+
+  &:nth-child(even) {
+    background-color: blue;
+  }
+}

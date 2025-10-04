@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+
+section {
+  display: grid;
+  grid-template-columns: 10% 15% 25% 25% 15% 10%;
+  grid-template-rows: 10% 15% 25% 25% 15% 10%;
+  width: 600px;
+  height: 600px;
+}
+
+div {
+  border: 1px solid black;
+}

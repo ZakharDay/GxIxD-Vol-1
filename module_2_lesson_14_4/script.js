@@ -10,6 +10,14 @@ function isOdd(n) {
   return Math.abs(n % 2) == 1;
 }
 
+//
+// UTILITIES END
+//
+
+//
+// EASINGS START
+//
+
 function easeInCubic(x) {
   return x * x * x;
 }
@@ -37,8 +45,14 @@ function easeInOutExpo(x) {
 }
 
 //
-// UTILITIES END
+// EASINGS END
 //
+
+function easing(x) {
+  return easeInCubic(x);
+  // return easeInOutElastic(x);
+  // return easeInOutExpo(x);
+}
 
 const canvasSize = {
   width: 600,
@@ -116,6 +130,8 @@ function createSquares() {
       });
     }
   }
+
+  console.log('GENERATED SQUARES', squares);
 }
 
 function markActiveSquare(p) {
@@ -190,6 +206,7 @@ function recalcInactiveSquare(square) {
   const totalSpaceTop = activeSquare.y;
   const totalSpaceBottom =
     canvasSize.height - (activeSquare.y + activeSquare.h);
+  const totalRowsTop = activeSquare.rows;
   const totalRowsBottom = squareSettings.rows - activeSquare.row - 1;
 
   let prevSquareInColumn;
@@ -205,26 +222,41 @@ function recalcInactiveSquare(square) {
     //   square.x = 0;
     //   square.w = squareSettings.minWidth;
     // }
-    if (
-      square.column == activeSquare.column - 1 &&
-      prevSquareInColumn != undefined
-    ) {
-      square.x = prevSquareInColumn.x + prevSquareInColumn.w;
-      square.w = squareSettings.width;
-    } else if (prevSquareInColumn != undefined) {
-      square.x = prevSquareInColumn.x + prevSquareInColumn.w;
 
-      const coef = (1 / (activeSquare.column - 1)) * square.column;
-      // const wCoef = easeInCubic(coef);
-      // const wCoef = easeInOutElastic(coef);
-      const wCoef = easeInOutExpo(coef);
+    //
+    //
+    //
+    // if (
+    //   square.column == activeSquare.column - 1 &&
+    //   prevSquareInColumn != undefined
+    // ) {
+    //   square.x = prevSquareInColumn.x + prevSquareInColumn.w;
+    //   square.w = squareSettings.width;
+    // } else if (prevSquareInColumn != undefined) {
+    //   square.x = prevSquareInColumn.x + prevSquareInColumn.w;
+    //   const coef = (1 / (activeSquare.column - 2)) * square.column;
+    //   const wCoef = easeInCubic(coef);
+    //   // const wCoef = easeInOutElastic(coef);
+    //   // const wCoef = easeInOutExpo(coef);
 
-      square.w = squareSettings.minWidth * (wCoef + 1);
-      console.log(prevSquareInColumn, coef, wCoef, square.w);
+    //   square.w = totalSpaceLeft * wCoef;
+    // } else {
+    //   square.x = 0;
+    //   square.w = squareSettings.minWidth;
+    // }
+    //
+    //
+    //
+
+    if (prevSquareInColumn != undefined) {
+      square.x = prevSquareInColumn.x + prevSquareInColumn.w;
     } else {
       square.x = 0;
-      square.w = squareSettings.minWidth;
     }
+
+    const coef = (1 / (activeSquare.column - 2)) * square.column;
+    const wCoef = easing(coef);
+    square.w = totalSpaceLeft * wCoef;
   }
 
   if (square.row < activeSquare.row) {
@@ -277,6 +309,7 @@ function sketch(p) {
     p.noStroke();
 
     squares.forEach((square) => {
+      // console.log('SQUARE', square);
       const { x, y, w, h, color } = square;
 
       p.fill(color);
@@ -285,7 +318,7 @@ function sketch(p) {
   };
 
   p.mouseMoved = () => {
-    console.log(p.mouseX, p.mouseY);
+    // console.log(p.mouseX, p.mouseY);
     markActiveSquare(p);
     updateSquares(p);
   };
